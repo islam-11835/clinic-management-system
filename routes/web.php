@@ -19,6 +19,7 @@ use App\Http\Controllers\ReportExportController;
 
 use App\Http\Controllers\FinalCheckController;
 use App\Http\Controllers\DatabaseOptimizationController;
+use App\Http\Controllers\AuthController;
 
 // 1. Ana Sayfa (Dashboard)
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
@@ -139,3 +140,8 @@ Route::post('/randevu/{id}/confirm-sms', function ($id, SmsService $smsService) 
 Route::get('/raporlar-export', [ReportExportController::class, 'index'])->name('reports_export.index');
 Route::get('/system-logs', [SystemLogController::class, 'index'])->name('system_logs.index');
 Route::get('/final-check', [FinalCheckController::class, 'index'])->name('final_check.index');
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
+Route::post('/register', [AuthController::class, 'register'])->name('register.post');
