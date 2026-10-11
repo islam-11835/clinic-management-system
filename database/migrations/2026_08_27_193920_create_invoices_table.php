@@ -11,11 +11,11 @@ return new class extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
             $table->string('patient_name');
-            $table->decimal('amount', 10, 2);
-            $table->string('status');
-            $table->date('invoice_date');
-            $table->string('odeme_durumu')->default('Bekliyor'); // العمود المطلوب
-            $table->decimal('tutar', 10, 2)->default(0);          // العمود المطلوب
+            $table->decimal('amount', 10, 2)->default(0);
+            $table->string('status')->default('Bekliyor');
+            $table->date('invoice_date')->nullable();
+            $table->string('odeme_durumu')->default('Bekliyor');
+            $table->decimal('tutar', 10, 2)->default(0);
             $table->timestamps();
         });
     }
