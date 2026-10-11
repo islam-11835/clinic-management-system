@@ -1,25 +1,25 @@
 <?php
 
-namespace App\Http\Controllers;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-use Illuminate\Http\Request;
-
-class InvoiceController extends Controller
+return new class extends Migration
 {
-    public function index()
+    public function up(): void
     {
-        return view('invoices.index');
+        Schema::create('invoices', function (Blueprint $table) {
+            $table->id();
+            $table->string('patient_name');
+            $table->decimal('amount', 10, 2);
+            $table->string('status');
+            $table->date('invoice_date');
+            $table->timestamps();
+        });
     }
 
-    public function store(Request $request)
+    public function down(): void
     {
-        $request->validate([
-            'patient_name' => 'required|string|max:255',
-            'amount'       => 'required|numeric',
-            'status'       => 'required|string',
-            'invoice_date' => 'required|date',
-        ]);
-
-        return redirect()->back()->with('success', 'Fatura başarıyla sisteme eklendi ve kaydedildi.');
+        Schema::dropIfExists('invoices');
     }
-}
+};
