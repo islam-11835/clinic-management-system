@@ -16,7 +16,7 @@ class DashboardController extends Controller
         $totalLabTests = LabTest::count();
         $totalRecords = MedicalRecord::count();
         $totalInvoices = Invoice::count();
-        $totalRevenue = Invoice::where('odeme_durumu', 'Ödendi')->sum('tutar');
+       $totalRevenue = Invoice::where('status', 'Ödendi')->sum('amount');
 
         return view('dashboard', compact(
             'totalAppointments', 
